@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mis Compras y Carrito | MY PETS</title>
+  <link rel="stylesheet" href="../css/styles.css" />
+</head>
+<body>
+
+  <header class="site-header" id="site-header"></header>
+
+  <main>
+    <section class="page-banner">
+      <div class="container" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
+        <div>
+          <h1>Mis Compras y Carrito</h1>
+          <p>Revisa los productos seleccionados en tu carrito o consulta tu historial de pedidos realizados.</p>
+        </div>
+        <a href="productos.html" class="btn-outline">+ Seguir Comprando</a>
+      </div>
+    </section>
+
+    <section class="container" style="margin-bottom: 56px;">
+      <!-- Bloque 1: Carrito activo -->
+      <div class="panel-card">
+        <h2 class="section-heading">🛒 Carrito de Compras Actual</h2>
+        <div id="cart-items-container">
+          <!-- Renderizado desde localStorage en js/main.js -->
+        </div>
+      </div>
+
+      <!-- Bloque 2: Historial de pedidos confirmados -->
+      <div class="panel-card">
+        <h2 class="section-heading">📦 Historial de Pedidos Realizados</h2>
+        <div id="orders-history-container">
+          <!-- Renderizado desde localStorage en js/main.js -->
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" id="site-footer"></footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>
+

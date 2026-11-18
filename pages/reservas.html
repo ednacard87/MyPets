@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mis Reservas | MY PETS</title>
+  <link rel="stylesheet" href="../css/styles.css" />
+</head>
+<body>
+
+  <header class="site-header" id="site-header"></header>
+
+  <main>
+    <section class="page-banner">
+      <div class="container" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
+        <div>
+          <h1>Mis Citas y Reservas</h1>
+          <p>Consulta el estado de tus citas veterinarias o cancela una reserva si no puedes asistir.</p>
+        </div>
+        <a href="veterinarios.html" class="btn-primary">+ Agendar Nueva Cita</a>
+      </div>
+    </section>
+
+    <section class="container" style="margin-bottom: 56px;">
+      <div class="panel-card" id="reservations-table-container">
+        <!-- Tabla renderizada dinámicamente desde localStorage en js/main.js -->
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" id="site-footer"></footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>
+

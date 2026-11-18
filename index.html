@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MY PETS | Cuidamos y Consentimos a tus mejores amigos</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <!-- Header consistente inyectado desde js/main.js -->
+  <header class="site-header" id="site-header"></header>
+
+  <main>
+    <!-- 1. Banner Principal (Hero) tal como el diseño oficial -->
+    <section class="hero-section">
+      <div class="container hero-grid">
+        <div class="hero-content">
+          <h1 class="hero-title">
+            Cuidamos y Consentimos a<br />
+            tus mejores amigos!
+          </h1>
+          <p class="hero-subtitle">
+            Productos de Calidad para Perros y Gatos.
+          </p>
+        </div>
+
+        <!-- Ilustración amigable de dueños cuidando perros y gatos -->
+        <div class="hero-illustration" aria-label="Ilustración cuidado de mascotas">
+          <svg viewBox="0 0 420 220" width="100%" height="205">
+            <!-- Círculos decorativos de fondo -->
+            <circle cx="115" cy="95" r="58" fill="#a8f9e4" opacity="0.65" />
+            <circle cx="70" cy="48" r="24" fill="#29b6f6" opacity="0.55" />
+            <circle cx="305" cy="95" r="62" fill="#fff3b0" opacity="0.85" />
+            <!-- Escena izquierda: Joven abrazando perro y gato -->
+            <rect x="85" y="105" width="60" height="75" rx="18" fill="#ffb300" />
+            <circle cx="115" cy="70" r="22" fill="#a15c38" />
+            <path d="M95 62 Q115 38 135 62" fill="#263238" />
+            <!-- Perro feliz -->
+            <path d="M135 180 L145 100 Q162 92 174 108 L182 180 Z" fill="#c8b29b" />
+            <circle cx="162" cy="92" r="18" fill="#a68e74" />
+            <!-- Gato gris -->
+            <path d="M62 180 L70 120 Q84 114 94 126 L98 180 Z" fill="#8d8d92" />
+            <circle cx="80" cy="112" r="14" fill="#8d8d92" />
+            <!-- Escena derecha: Peluquería felina/canina -->
+            <rect x="285" y="102" width="66" height="78" rx="20" fill="#ff5252" />
+            <circle cx="318" cy="68" r="22" fill="#f5cbb7" />
+            <path d="M294 66 Q318 35 344 68 L348 105 L292 105 Z" fill="#4e342e" opacity="0.35" />
+            <!-- Mascota en sesión de secado -->
+            <ellipse cx="295" cy="155" rx="34" ry="22" fill="#78909c" />
+            <circle cx="268" cy="136" r="16" fill="#78909c" />
+            <!-- Secador azul -->
+            <rect x="315" y="114" width="24" height="14" rx="5" fill="#0277bd" transform="rotate(-20 315 114)" />
+            <line x1="25" y1="182" x2="395" y2="182" stroke="#37474f" stroke-width="2" />
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Tres Tarjetas de Accesos Rápidos (Veterinarios, Peluquería, Productos) -->
+    <section class="services-cards-section">
+      <div class="container services-grid">
+        <!-- Tarjeta 1: Veterinarios (#2ec49f) -->
+        <article class="service-card card-vet">
+          <div class="service-icon" aria-hidden="true">🩺</div>
+          <div>
+            <h3>VETERINARIOS</h3>
+            <p>Consultas Veterinarias</p>
+          </div>
+          <a href="pages/veterinarios.html" class="btn-pill-mint">Ver más</a>
+        </article>
+
+        <!-- Tarjeta 2: Peluquería y Guardería (#a8f9e4) -->
+        <article class="service-card card-groom">
+          <div class="service-icon" aria-hidden="true">✂️</div>
+          <div>
+            <h3>PELUQUERIA Y GUARDERIA</h3>
+            <p>Peluquería y Guardería para perros y Gatos</p>
+          </div>
+          <a href="pages/peluqueria-guarderia.html" class="btn-pill-mint">Ver más</a>
+        </article>
+
+        <!-- Tarjeta 3: Productos y Alimentos (#e6f3f7) -->
+        <article class="service-card card-products">
+          <div class="service-icon" aria-hidden="true">📦</div>
+          <div>
+            <h3>PRODUCTOS Y ALIMENTOS</h3>
+            <p>Cuido, ropa y juguetes para tus amigos peludos.</p>
+          </div>
+          <a href="pages/productos.html" class="btn-pill-mint">Ver más</a>
+        </article>
+      </div>
+    </section>
+
+    <!-- 3. Productos Destacados del Mes -->
+    <section class="featured-section">
+      <div class="container">
+        <h2 class="section-heading">Productos Destacados del Mes</h2>
+        <div class="products-grid" id="featured-products-grid">
+          <!-- Renderizado dinámico desde js/main.js (Cama, Royal Canin 4 Kilos, Juguete interactivo, Pechera Personaliza) -->
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. Nuestros Clientes Felices -->
+    <section class="testimonials-section">
+      <div class="container">
+        <div class="testimonials-header">
+          <h2 class="testimonials-title">NUESTROS CLIENTES FELICES</h2>
+          <svg class="paw-deco" viewBox="0 0 64 64" fill="none" stroke="#1f2d3d">
+            <path d="M22 36 C15 36 12 43 16 49 C20 55 28 53 32 49 C36 45 38 39 33 35 C29 32 26 36 22 36 Z" stroke-width="3"/>
+            <ellipse cx="18" cy="24" rx="4" ry="5.5" transform="rotate(-20 18 24)" stroke-width="3"/>
+            <ellipse cx="29" cy="18" rx="4" ry="5.5" transform="rotate(-5 29 18)" stroke-width="3"/>
+            <ellipse cx="41" cy="21" rx="4" ry="5.5" transform="rotate(15 41 21)" stroke-width="3"/>
+            <ellipse cx="48" cy="32" rx="4" ry="5" transform="rotate(32 48 32)" stroke-width="3"/>
+          </svg>
+        </div>
+
+        <div class="testimonials-grid">
+          <!-- Testimonio 1 -->
+          <article class="testimonial-card">
+            <svg class="testimonial-avatar" viewBox="0 0 130 115">
+              <rect width="130" height="115" rx="22" fill="#dceecc"/>
+              <circle cx="42" cy="62" r="24" fill="#e6b87d"/>
+              <circle cx="35" cy="56" r="3" fill="#222"/>
+              <circle cx="48" cy="56" r="3" fill="#222"/>
+              <ellipse cx="42" cy="65" rx="5" ry="4" fill="#3e2723"/>
+              <circle cx="84" cy="54" r="20" fill="#f3cbb2"/>
+              <path d="M62 54 Q84 22 106 56 L108 98 L60 98 Z" fill="#6d4c41" opacity="0.45"/>
+              <rect x="64" y="76" width="44" height="39" rx="10" fill="#ffffff"/>
+            </svg>
+            <div class="testimonial-text">
+              <h4>Tatiana con "Luna"</h4>
+              <p>Siempre utilizo la peluquería con mi gorda y la dejan super hermosa.</p>
+            </div>
+          </article>
+
+          <!-- Testimonio 2 -->
+          <article class="testimonial-card">
+            <svg class="testimonial-avatar" viewBox="0 0 130 115">
+              <rect width="130" height="115" rx="22" fill="#d7e8ba"/>
+              <circle cx="52" cy="48" r="18" fill="#e0ac8b"/>
+              <rect x="30" y="68" width="46" height="45" rx="10" fill="#cfd8dc"/>
+              <circle cx="88" cy="64" r="22" fill="#90a4ae"/>
+              <polygon points="72,46 78,28 86,46" fill="#78909c"/>
+              <polygon points="90,46 98,28 104,46" fill="#78909c"/>
+              <circle cx="82" cy="60" r="2.8" fill="#111"/>
+              <circle cx="95" cy="60" r="2.8" fill="#111"/>
+            </svg>
+            <div class="testimonial-text">
+              <h4>Miguel con "Dante"</h4>
+              <p>Siempre me cuidan a Dante cuando salgo de viaje, los recomiendo.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer consistente inyectado desde js/main.js -->
+  <footer class="site-footer" id="site-footer"></footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Veterinarios y Reservas | MY PETS</title>
+  <link rel="stylesheet" href="../css/styles.css" />
+</head>
+<body>
+
+  <header class="site-header" id="site-header"></header>
+
+  <main>
+    <section class="page-banner">
+      <div class="container">
+        <h1>Veterinarios y Agendamiento de Citas</h1>
+        <p>Conoce a nuestro equipo médico veterinario y agenda la consulta de tu mascota en segundos.</p>
+      </div>
+    </section>
+
+    <section class="container vet-layout">
+      <!-- Columna Izquierda: Listado de Veterinarios -->
+      <div>
+        <h2 class="section-heading">Nuestros Especialistas</h2>
+        <div class="vets-list" id="vets-list-container">
+          <!-- Tarjetas de veterinarios generadas por js/main.js -->
+        </div>
+      </div>
+
+      <!-- Columna Derecha: Formulario para Agendar Cita -->
+      <aside class="booking-card">
+        <h2 style="color: var(--color-hero-green); font-size: 1.35rem; margin-bottom: 6px;">
+          📅 Agendar Cita Veterinaria
+        </h2>
+        <p style="font-size: 0.9rem; color: var(--color-text-muted); margin-bottom: 18px;">
+          Completa los datos y tu cita quedará guardada en la sección <strong>Reservas</strong>.
+        </p>
+
+        <form id="booking-form">
+          <div class="form-group">
+            <label for="cita-propietario">Nombre del propietario</label>
+            <input type="text" id="cita-propietario" class="form-control" placeholder="Tu nombre completo" required />
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 12px;">
+            <div class="form-group">
+              <label for="cita-mascota">Nombre de la mascota</label>
+              <input type="text" id="cita-mascota" class="form-control" placeholder="Ej: Luna" required />
+            </div>
+
+            <div class="form-group">
+              <label for="cita-especie">Especie</label>
+              <select id="cita-especie" class="form-control" required>
+                <option value="Perro">Perro 🐶</option>
+                <option value="Gato">Gato 🐱</option>
+                <option value="Otro">Otro 🐾</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="cita-veterinario">Veterinario asignado</label>
+            <select id="cita-veterinario" class="form-control" required></select>
+          </div>
+
+          <div class="form-group">
+            <label for="cita-servicio">Tipo de consulta / servicio</label>
+            <select id="cita-servicio" class="form-control" required>
+              <option value="Consulta General y Control">Consulta General y Control</option>
+              <option value="Esquema de Vacunación">Esquema de Vacunación</option>
+              <option value="Desparasitación y Profilaxis">Desparasitación y Profilaxis</option>
+              <option value="Consulta Dermatológica">Consulta Dermatológica</option>
+              <option value="Ecografía / Exámenes">Ecografía / Exámenes</option>
+            </select>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+            <div class="form-group">
+              <label for="cita-fecha">Fecha</label>
+              <input type="date" id="cita-fecha" class="form-control" required />
+            </div>
+
+            <div class="form-group">
+              <label for="cita-hora">Hora</label>
+              <select id="cita-hora" class="form-control" required>
+                <option value="08:30">08:30 AM</option>
+                <option value="10:00">10:00 AM</option>
+                <option value="11:30">11:30 AM</option>
+                <option value="14:00">02:00 PM</option>
+                <option value="15:30">03:30 PM</option>
+                <option value="16:30">04:30 PM</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="cita-notas">Motivo o síntomas (opcional)</label>
+            <textarea id="cita-notas" class="form-control" rows="2" placeholder="Describe brevemente el motivo de la consulta..."></textarea>
+          </div>
+
+          <button type="submit" class="btn-primary btn-block">
+            Confirmar Reserva
+          </button>
+        </form>
+      </aside>
+    </section>
+  </main>
+
+  <footer class="site-footer" id="site-footer"></footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>
+

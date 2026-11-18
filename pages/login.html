@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Iniciar Sesión | MY PETS</title>
+  <link rel="stylesheet" href="../css/styles.css" />
+</head>
+<body>
+
+  <header class="site-header" id="site-header"></header>
+
+  <main class="container">
+    <section class="auth-wrapper">
+      <div class="auth-header">
+        <h1>Iniciar Sesión</h1>
+        <p style="color: var(--color-text-muted); font-size: 0.94rem;">
+          Accede a tu cuenta para gestionar las citas y compras de tu mascota.
+        </p>
+      </div>
+
+      <form id="login-form">
+        <div class="form-group">
+          <label for="login-email">Correo electrónico</label>
+          <input
+            type="email"
+            id="login-email"
+            class="form-control"
+            placeholder="ejemplo@correo.com"
+            value="demo@mypets.com"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="login-password">Contraseña</label>
+          <input
+            type="password"
+            id="login-password"
+            class="form-control"
+            placeholder="••••••••"
+            value="123"
+            required
+          />
+        </div>
+
+        <button type="submit" class="btn-primary btn-block" style="margin-top: 10px;">
+          Entrar a Mi Cuenta
+        </button>
+      </form>
+
+      <div style="margin-top: 18px; padding: 12px; background: var(--color-prod-card); border-radius: 10px; font-size: 0.85rem;">
+        <strong>💡 Cuenta de prueba lista:</strong><br />
+        Correo: <code>demo@mypets.com</code> | Contraseña: <code>123</code>
+      </div>
+
+      <p style="text-align: center; margin-top: 18px; font-size: 0.92rem;">
+        ¿Aún no tienes cuenta?
+        <a href="registro.html" style="color: var(--color-nav-teal); font-weight: 700; text-decoration: underline;">
+          Regístrate aquí
+        </a>
+      </p>
+    </section>
+  </main>
+
+  <footer class="site-footer" id="site-footer"></footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>
+
