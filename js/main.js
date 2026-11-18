@@ -275,8 +275,9 @@ function renderizarHeader() {
     : '';
 
   // Cuando hay sesión activa se muestra Carrito, saludo y botón Cerrar Sesión;
-  // cuando NO hay sesión aparecen INICIAR SESION y REGISTRO (en login.html se oculta INICIAR SESION como en el mockup).
+  // cuando NO hay sesión aparecen INICIAR SESION y REGISTRO (ocultando el botón de la página actual).
   const enPaginaLogin = pathActual.endsWith('login.html');
+  const enPaginaRegistro = pathActual.endsWith('registro.html');
   const botonesSesionHTML = sesion
     ? `
       <a href="${resolverRuta('pages/mis-compras.html')}" class="cart-badge-link" title="Ver carrito y compras">
@@ -287,7 +288,7 @@ function renderizarHeader() {
     `
     : `
       ${enPaginaLogin ? '' : `<a href="${resolverRuta('pages/login.html')}" class="btn-auth">INICIAR SESION</a>`}
-      <a href="${resolverRuta('pages/registro.html')}" class="btn-auth">REGISTRO</a>
+      ${enPaginaRegistro ? '' : `<a href="${resolverRuta('pages/registro.html')}" class="btn-auth">REGISTRO</a>`}
     `;
 
   headerEl.innerHTML = `
@@ -607,6 +608,16 @@ function iniciarPaginaLogin() {
 function iniciarPaginaRegistro() {
   const form = document.getElementById('register-form');
   if (!form) return;
+
+  // Botón del ojito para mostrar/ocultar contraseña en Registro
+  const btnToggleRegPass = document.getElementById('btn-toggle-reg-pass');
+  const inputRegPass = document.getElementById('reg-password');
+  if (btnToggleRegPass && inputRegPass) {
+    btnToggleRegPass.addEventListener('click', () => {
+      const esPassword = inputRegPass.type === 'password';
+      inputRegPass.type = esPassword ? 'text' : 'password';
+    });
+  }
 
   form.addEventListener('submit', (e) => {
     e.preventDefault();

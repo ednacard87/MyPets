@@ -4,95 +4,128 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Crear Cuenta | MY PETS</title>
-  <link rel="stylesheet" href="../css/styles.css" />
+  <link rel="stylesheet" href="../css/styles.css?v=3" />
 </head>
 <body>
 
   <header class="site-header" id="site-header"></header>
 
-  <main class="container">
-    <section class="auth-wrapper">
-      <div class="auth-header">
-        <h1>Registro de Usuario</h1>
-        <p style="color: var(--color-text-muted); font-size: 0.94rem;">
-          Únete a la comunidad My Pets y consiente a tu mejor amigo.
-        </p>
+  <main class="login-page-section">
+    <div class="container login-showcase">
+      <!-- Círculos decorativos color durazno pastel del fondo -->
+      <div class="login-blob blob-top-left" aria-hidden="true"></div>
+      <div class="login-blob blob-bottom-left" aria-hidden="true">
+        <svg viewBox="0 0 64 64" width="38" height="38" fill="none" stroke="#1f2d3d">
+          <path d="M22 36 C15 36 12 43 16 49 C20 55 28 53 32 49 C36 45 38 39 33 35 C29 32 26 36 22 36 Z" stroke-width="3"/>
+          <ellipse cx="18" cy="24" rx="4" ry="5.5" transform="rotate(-20 18 24)" stroke-width="3"/>
+          <ellipse cx="29" cy="18" rx="4" ry="5.5" transform="rotate(-5 29 18)" stroke-width="3"/>
+          <ellipse cx="41" cy="21" rx="4" ry="5.5" transform="rotate(15 41 21)" stroke-width="3"/>
+          <ellipse cx="48" cy="32" rx="4" ry="5" transform="rotate(32 48 32)" stroke-width="3"/>
+        </svg>
       </div>
+      <div class="login-blob blob-bottom-center" aria-hidden="true"></div>
 
-      <form id="register-form">
-        <div class="form-group">
-          <label for="reg-nombre">Nombre completo</label>
-          <input
-            type="text"
-            id="reg-nombre"
-            class="form-control"
-            placeholder="Ej: Miguel Ángel Pérez"
-            required
-          />
+      <!-- Contenedor central con el cuadro celeste y la imagen superpuesta -->
+      <div class="login-stage">
+        <!-- Cuadro celeste de Registro -->
+        <section class="login-cyan-card">
+          <div class="login-cyan-header">
+            <h1>REGISTRO</h1>
+            <p>Únete a la comunidad My Pets y consiente a tu amigo peludo</p>
+          </div>
+
+          <form id="register-form">
+            <div class="login-field">
+              <label for="reg-nombre">Nombre Completo</label>
+              <input
+                type="text"
+                id="reg-nombre"
+                class="login-pill-input"
+                placeholder="Ej: Miguel Ángel Pérez"
+                required
+              />
+            </div>
+
+            <div class="login-field">
+              <label for="reg-email">Correo Electronico</label>
+              <input
+                type="email"
+                id="reg-email"
+                class="login-pill-input"
+                placeholder="miguel@correo.com"
+                required
+              />
+            </div>
+
+            <div class="login-field">
+              <label for="reg-telefono">Teléfono / WhatsApp</label>
+              <input
+                type="tel"
+                id="reg-telefono"
+                class="login-pill-input"
+                placeholder="300 123 4567"
+                required
+              />
+            </div>
+
+            <div class="login-field">
+              <label for="reg-mascota">Nombre y especie de tu mascota</label>
+              <input
+                type="text"
+                id="reg-mascota"
+                class="login-pill-input"
+                placeholder="Ej: Dante (Perro Husky)"
+                required
+              />
+            </div>
+
+            <div class="login-field">
+              <label for="reg-password">Contraseña</label>
+              <div class="password-input-wrap">
+                <input
+                  type="password"
+                  id="reg-password"
+                  class="login-pill-input"
+                  placeholder="Crea una contraseña segura"
+                  minlength="3"
+                  required
+                />
+                <button
+                  type="button"
+                  class="btn-toggle-pass"
+                  id="btn-toggle-reg-pass"
+                  aria-label="Mostrar u ocultar contraseña"
+                  title="Mostrar / ocultar contraseña"
+                >
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/>
+                    <line x1="1" y1="1" x2="23" y2="23"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            <button type="submit" class="btn-login-peach">
+              REGISTRARME
+            </button>
+          </form>
+
+          <p class="login-register-prompt">
+            ¿Ya tienes una cuenta?
+            <a href="login.html">Inicia sesión aquí</a>
+          </p>
+        </section>
+
+        <!-- Imagen derecha de la chica con el perro y el gato -->
+        <div class="login-photo-card">
+          <img src="../img/login-mascotas.jpg?v=3" alt="Dueña feliz con su gato y su perro" />
         </div>
-
-        <div class="form-group">
-          <label for="reg-email">Correo electrónico</label>
-          <input
-            type="email"
-            id="reg-email"
-            class="form-control"
-            placeholder="miguel@correo.com"
-            required
-          />
-        </div>
-
-        <div class="form-group">
-          <label for="reg-telefono">Teléfono / WhatsApp</label>
-          <input
-            type="tel"
-            id="reg-telefono"
-            class="form-control"
-            placeholder="300 123 4567"
-            required
-          />
-        </div>
-
-        <div class="form-group">
-          <label for="reg-mascota">Nombre y especie de tu mascota</label>
-          <input
-            type="text"
-            id="reg-mascota"
-            class="form-control"
-            placeholder="Ej: Dante (Perro Husky)"
-            required
-          />
-        </div>
-
-        <div class="form-group">
-          <label for="reg-password">Contraseña</label>
-          <input
-            type="password"
-            id="reg-password"
-            class="form-control"
-            placeholder="Crea una contraseña segura"
-            minlength="3"
-            required
-          />
-        </div>
-
-        <button type="submit" class="btn-primary btn-block" style="margin-top: 10px;">
-          Crear Cuenta
-        </button>
-      </form>
-
-      <p style="text-align: center; margin-top: 18px; font-size: 0.92rem;">
-        ¿Ya tienes una cuenta?
-        <a href="login.html" style="color: var(--color-nav-teal); font-weight: 700; text-decoration: underline;">
-          Inicia sesión aquí
-        </a>
-      </p>
-    </section>
+      </div>
+    </div>
   </main>
 
   <footer class="site-footer" id="site-footer"></footer>
 
-  <script src="../js/main.js"></script>
+  <script src="../js/main.js?v=3"></script>
 </body>
 </html>
-
