@@ -458,12 +458,30 @@ function iniciarPaginaHome() {
           <h3 class="product-title">${prod.nombre}</h3>
         </div>
         <div class="product-footer">
-          <span class="price-pill">${formatearCOP(prod.precio)}</span>
+          <button
+            type="button"
+            class="price-pill"
+            data-buy-now="${prod.id}"
+            title="Agregar al carrito e ir a Mis Compras"
+            style="border: none; cursor: pointer;"
+          >
+            ${formatearCOP(prod.precio)}
+          </button>
         </div>
       </article>
     `
     )
     .join('');
+
+  // Al hacer clic en el botón de precio, agrega el producto al carrito y redirige a Mis Compras
+  gridDestacados.addEventListener('click', (e) => {
+    const btn = e.target.closest('[data-buy-now]');
+    if (btn) {
+      const prodId = btn.getAttribute('data-buy-now');
+      agregarAlCarrito(prodId);
+      window.location.href = resolverRuta('pages/mis-compras.html');
+    }
+  });
 }
 
 /* --- 6.2 PÁGINA DE PRODUCTOS (pages/productos.html) --- */
