@@ -315,13 +315,19 @@ button, input, select, textarea {
 }
 
 .hero-illustration {
-  background: #f9fafa;
   border-radius: var(--radius-lg);
-  padding: 18px;
+  overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
-  box-shadow: var(--shadow-soft);
+}
+
+.hero-illustration img {
+  width: 100%;
+  max-width: 440px;
+  height: auto;
+  border-radius: var(--radius-lg);
+  object-fit: cover;
 }
 
 /* ==========================================================================

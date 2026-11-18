@@ -29,15 +29,7 @@ const CATALOGO_PRODUCTOS = [
     precio: 70000,
     destacado: true,
     descripcion: 'Cama acolchada azul con bordado de huella, ultra cómoda y lavable.',
-    svg: `<svg viewBox="0 0 180 120" width="150" height="105">
-      <rect x="18" y="45" width="144" height="55" rx="18" fill="#234e8c"/>
-      <rect x="34" y="34" width="112" height="44" rx="12" fill="#3264a8" stroke="#e4eefc" stroke-width="2"/>
-      <rect x="74" y="78" width="32" height="12" rx="3" fill="#c69868"/>
-      <circle cx="138" cy="83" r="6" fill="#c69868"/>
-      <circle cx="131" cy="73" r="3" fill="#c69868"/>
-      <circle cx="138" cy="71" r="3" fill="#c69868"/>
-      <circle cx="145" cy="73" r="3" fill="#c69868"/>
-    </svg>`
+    imagen: 'img/cama.png'
   },
   {
     id: 'prod-2',
@@ -47,16 +39,7 @@ const CATALOGO_PRODUCTOS = [
     precio: 150000,
     destacado: true,
     descripcion: 'Alimento seco premium para cachorros y perros adultos con vitaminas.',
-    svg: `<svg viewBox="0 0 160 130" width="135" height="115">
-      <rect x="42" y="15" width="76" height="100" rx="8" fill="#f5f7fa" stroke="#d0d9e6" stroke-width="2"/>
-      <rect x="42" y="32" width="76" height="22" fill="#d9383a"/>
-      <rect x="42" y="58" width="76" height="18" fill="#1e88e5"/>
-      <text x="80" y="47" text-anchor="middle" fill="#fff" font-size="10" font-weight="bold">ROYAL CANIN</text>
-      <circle cx="58" cy="96" r="5" fill="#7c4d2b"/>
-      <circle cx="68" cy="100" r="5" fill="#7c4d2b"/>
-      <circle cx="63" cy="90" r="5" fill="#7c4d2b"/>
-      <circle cx="96" cy="92" r="11" fill="#e6b980"/>
-    </svg>`
+    imagen: 'img/royal-canin.png'
   },
   {
     id: 'prod-3',
@@ -66,13 +49,7 @@ const CATALOGO_PRODUCTOS = [
     precio: 30000,
     destacado: true,
     descripcion: 'Juguete con ventosa y cuerda resistente para estimular la mordida.',
-    svg: `<svg viewBox="0 0 160 120" width="140" height="105">
-      <ellipse cx="75" cy="98" rx="24" ry="12" fill="#1e88e5"/>
-      <rect x="65" y="65" width="20" height="30" rx="6" fill="#29b6f6"/>
-      <path d="M75 65 Q95 38 118 35" stroke="#1565c0" stroke-width="4" fill="none" stroke-dasharray="4 2"/>
-      <circle cx="122" cy="35" r="13" fill="#1e88e5"/>
-      <circle cx="52" cy="40" r="9" fill="#42a5f5"/>
-    </svg>`
+    imagen: 'img/juguete-interactivo.png'
   },
   {
     id: 'prod-4',
@@ -82,14 +59,7 @@ const CATALOGO_PRODUCTOS = [
     precio: 50000,
     destacado: true,
     descripcion: 'Arnés ergonómico con estampado divertido y correa a juego incluida.',
-    svg: `<svg viewBox="0 0 170 120" width="145" height="105">
-      <rect x="20" y="16" width="130" height="88" rx="12" fill="#2fb79c"/>
-      <path d="M48 30 H82 L75 56 L86 86 H44 L54 56 Z" fill="#1e88e5" stroke="#ffd54f" stroke-width="3"/>
-      <circle cx="64" cy="46" r="4" fill="#ffd54f"/>
-      <circle cx="58" cy="70" r="4" fill="#ffd54f"/>
-      <circle cx="72" cy="72" r="4" fill="#ffd54f"/>
-      <rect x="112" y="26" width="10" height="68" rx="5" fill="#1e88e5" stroke="#ffd54f" stroke-width="2"/>
-    </svg>`
+    imagen: 'img/pechera.png'
   },
   {
     id: 'prod-5',
@@ -296,8 +266,21 @@ function renderizarHeader() {
 
   const esActivo = (archivo) => pathActual.endsWith(archivo) ? 'active' : '';
 
+  // Links de Reservas y Mis Compras solo aparecen cuando el cliente inició sesión
+  const linksPrivadosHTML = sesion
+    ? `
+      <a href="${resolverRuta('pages/reservas.html')}" class="nav-link ${esActivo('reservas.html')}">RESERVAS</a>
+      <a href="${resolverRuta('pages/mis-compras.html')}" class="nav-link ${esActivo('mis-compras.html')}">MIS COMPRAS</a>
+    `
+    : '';
+
+  // Cuando hay sesión activa se muestra Carrito, saludo y botón Cerrar Sesión;
+  // cuando NO hay sesión solo aparecen INICIAR SESION y REGISTRO.
   const botonesSesionHTML = sesion
     ? `
+      <a href="${resolverRuta('pages/mis-compras.html')}" class="cart-badge-link" title="Ver carrito y compras">
+        🛒 Carrito <span class="badge-count" id="nav-cart-count">${totalItems}</span>
+      </a>
       <span class="user-chip" title="Usuario activo">🐾 Hola, ${sesion.nombre.split(' ')[0]}</span>
       <button type="button" class="btn-auth" id="btn-logout">CERRAR SESION</button>
     `
@@ -322,22 +305,18 @@ function renderizarHeader() {
         <a href="${resolverRuta('pages/productos.html')}" class="nav-link ${esActivo('productos.html')}">TIENDA</a>
         
         <div class="nav-dropdown">
-          <a href="${resolverRuta('pages/veterinarios.html')}" class="nav-link ${esActivo('veterinarios.html') || esActivo('peluqueria-guarderia.html') ? 'active' : ''}">SERVICIOS ▾</a>
+          <a href="${resolverRuta('pages/veterinarios.html')}" class="nav-link ${esActivo('veterinarios.html') || esActivo('peluqueria-guarderia.html') ? 'active' : ''}">SERVICIOS</a>
           <div class="nav-dropdown-menu">
             <a href="${resolverRuta('pages/veterinarios.html')}">🩺 Veterinarios y Citas</a>
             <a href="${resolverRuta('pages/peluqueria-guarderia.html')}">✂️ Peluquería y Guardería</a>
-            <a href="${resolverRuta('pages/reservas.html')}">📅 Gestionar Mis Reservas</a>
+            ${sesion ? `<a href="${resolverRuta('pages/reservas.html')}">📅 Gestionar Mis Reservas</a>` : ''}
           </div>
         </div>
 
-        <a href="${resolverRuta('pages/reservas.html')}" class="nav-link ${esActivo('reservas.html')}">RESERVAS</a>
-        <a href="${resolverRuta('pages/mis-compras.html')}" class="nav-link ${esActivo('mis-compras.html')}">MIS COMPRAS</a>
+        ${linksPrivadosHTML}
       </nav>
 
       <div class="nav-actions">
-        <a href="${resolverRuta('pages/mis-compras.html')}" class="cart-badge-link" title="Ver carrito y compras">
-          🛒 Carrito <span class="badge-count" id="nav-cart-count">${totalItems}</span>
-        </a>
         ${botonesSesionHTML}
       </div>
     </div>
@@ -454,6 +433,14 @@ function actualizarContadorCarrito() {
    6. CONTROLADORES POR PÁGINA
    -------------------------------------------------------------------------- */
 
+/* Helper para obtener la miniatura del producto (imagen real o SVG) */
+function obtenerVisualProducto(prod) {
+  if (prod.imagen) {
+    return `<img src="${resolverRuta(prod.imagen)}" alt="${prod.nombre}" />`;
+  }
+  return prod.svg || '';
+}
+
 /* --- 6.1 PÁGINA DE INICIO (index.html) --- */
 function iniciarPaginaHome() {
   const gridDestacados = document.getElementById('featured-products-grid');
@@ -466,25 +453,17 @@ function iniciarPaginaHome() {
       <article class="product-card">
         <div>
           <div class="product-thumb">
-            ${prod.svg}
+            ${obtenerVisualProducto(prod)}
           </div>
           <h3 class="product-title">${prod.nombre}</h3>
         </div>
         <div class="product-footer">
           <span class="price-pill">${formatearCOP(prod.precio)}</span>
-          <button type="button" class="btn-add-cart" data-add-cart="${prod.id}">+ Carrito</button>
         </div>
       </article>
     `
     )
     .join('');
-
-  gridDestacados.addEventListener('click', (e) => {
-    const btn = e.target.closest('[data-add-cart]');
-    if (btn) {
-      agregarAlCarrito(btn.getAttribute('data-add-cart'));
-    }
-  });
 }
 
 /* --- 6.2 PÁGINA DE PRODUCTOS (pages/productos.html) --- */
@@ -522,7 +501,7 @@ function iniciarPaginaProductos() {
         (prod) => `
         <article class="product-card">
           <div>
-            <div class="product-thumb">${prod.svg}</div>
+            <div class="product-thumb">${obtenerVisualProducto(prod)}</div>
             <div class="product-category-tag">${prod.categoria} • ${prod.mascota}</div>
             <h3 class="product-title">${prod.nombre}</h3>
             <p class="product-desc">${prod.descripcion}</p>
