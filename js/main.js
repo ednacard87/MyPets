@@ -275,7 +275,8 @@ function renderizarHeader() {
     : '';
 
   // Cuando hay sesión activa se muestra Carrito, saludo y botón Cerrar Sesión;
-  // cuando NO hay sesión solo aparecen INICIAR SESION y REGISTRO.
+  // cuando NO hay sesión aparecen INICIAR SESION y REGISTRO (en login.html se oculta INICIAR SESION como en el mockup).
+  const enPaginaLogin = pathActual.endsWith('login.html');
   const botonesSesionHTML = sesion
     ? `
       <a href="${resolverRuta('pages/mis-compras.html')}" class="cart-badge-link" title="Ver carrito y compras">
@@ -285,7 +286,7 @@ function renderizarHeader() {
       <button type="button" class="btn-auth" id="btn-logout">CERRAR SESION</button>
     `
     : `
-      <a href="${resolverRuta('pages/login.html')}" class="btn-auth">INICIAR SESION</a>
+      ${enPaginaLogin ? '' : `<a href="${resolverRuta('pages/login.html')}" class="btn-auth">INICIAR SESION</a>`}
       <a href="${resolverRuta('pages/registro.html')}" class="btn-auth">REGISTRO</a>
     `;
 
@@ -564,6 +565,16 @@ function iniciarPaginaProductos() {
 function iniciarPaginaLogin() {
   const form = document.getElementById('login-form');
   if (!form) return;
+
+  // Botón del ojito para mostrar/ocultar contraseña
+  const btnTogglePass = document.getElementById('btn-toggle-pass');
+  const inputPass = document.getElementById('login-password');
+  if (btnTogglePass && inputPass) {
+    btnTogglePass.addEventListener('click', () => {
+      const esPassword = inputPass.type === 'password';
+      inputPass.type = esPassword ? 'text' : 'password';
+    });
+  }
 
   form.addEventListener('submit', (e) => {
     e.preventDefault();
