@@ -126,35 +126,55 @@ const CATALOGO_PRODUCTOS = [
 const LISTA_VETERINARIOS = [
   {
     id: 'vet-1',
-    nombre: 'Dra. Valentina Morales',
+    nombre: 'Dra Lorena Garcia',
+    rolMockup: 'Veterinaria General Vacunación',
     especialidad: 'Medicina General y Vacunación',
     experiencia: '8 años de experiencia',
     horario: 'Lunes a Sábado • 8:00 AM - 5:00 PM',
-    iniciales: 'VM'
+    turno: 'Mañana',
+    turnosFiltro: ['Mañana'],
+    rating: '4.8',
+    imagen: 'img/vet-1.png',
+    iniciales: 'LG'
   },
   {
     id: 'vet-2',
-    nombre: 'Dr. Sebastián Rojas',
+    nombre: 'Dr. Alberto Noreña',
+    rolMockup: 'Veterinario General Vacunación',
     especialidad: 'Cirugía y Ortopedia Canina/Felina',
     experiencia: '11 años de experiencia',
     horario: 'Lunes a Viernes • 9:00 AM - 6:00 PM',
-    iniciales: 'SR'
+    turno: 'Tarde',
+    turnosFiltro: ['Tarde'],
+    rating: '4.5',
+    imagen: 'img/vet-2.png',
+    iniciales: 'AN'
   },
   {
     id: 'vet-3',
-    nombre: 'Dra. Camila Echeverri',
+    nombre: 'Dr. Hector Rios',
+    rolMockup: 'Veterinario General Vacunación',
     especialidad: 'Dermatología y Nutrición Animal',
     experiencia: '6 años de experiencia',
     horario: 'Martes a Sábado • 10:00 AM - 4:00 PM',
-    iniciales: 'CE'
+    turno: 'Noche',
+    turnosFiltro: ['Noche'],
+    rating: '4.0',
+    imagen: 'img/vet-3.png',
+    iniciales: 'HR'
   },
   {
     id: 'vet-4',
-    nombre: 'Dr. Andrés Felipe Gómez',
+    nombre: 'Dra Alba Diaz',
+    rolMockup: 'Veterinaria General Vacunacion',
     especialidad: 'Medicina Interna y Ecografía',
     experiencia: '9 años de experiencia',
-    horario: 'Lunes a Sábado • 7:30 AM - 3:30 PM',
-    iniciales: 'AG'
+    horario: 'Lunes a Sábado • 8:00 AM - 6:00 PM',
+    turno: '8 a.m - 6 p.m',
+    turnosFiltro: ['Mañana', 'Tarde'],
+    rating: '4.1',
+    imagen: 'img/vet-4.png',
+    iniciales: 'AD'
   }
 ];
 
@@ -307,9 +327,9 @@ function renderizarHeader() {
         <a href="${resolverRuta('pages/productos.html')}" class="nav-link ${esActivo('productos.html')}">TIENDA</a>
         
         <div class="nav-dropdown">
-          <a href="${resolverRuta('pages/veterinarios.html')}" class="nav-link ${esActivo('veterinarios.html') || esActivo('peluqueria-guarderia.html') ? 'active' : ''}">SERVICIOS</a>
+          <a href="${resolverRuta('pages/veterinarios.html?v=5')}" class="nav-link ${esActivo('veterinarios.html') || esActivo('peluqueria-guarderia.html') ? 'active' : ''}">SERVICIOS</a>
           <div class="nav-dropdown-menu">
-            <a href="${resolverRuta('pages/veterinarios.html')}">🩺 Veterinarios y Citas</a>
+            <a href="${resolverRuta('pages/veterinarios.html?v=5')}">🩺 Veterinarios y Citas</a>
             <a href="${resolverRuta('pages/peluqueria-guarderia.html')}">✂️ Peluquería y Guardería</a>
             ${sesion ? `<a href="${resolverRuta('pages/reservas.html')}">📅 Gestionar Mis Reservas</a>` : ''}
           </div>
@@ -665,25 +685,62 @@ function iniciarPaginaVeterinarios() {
   const formCita = document.getElementById('booking-form');
   if (!contenedorVets || !formCita) return;
 
-  // Render tarjetas de veterinarios
-  contenedorVets.innerHTML = LISTA_VETERINARIOS.map(
-    (vet) => `
-    <article class="vet-card">
-      <div style="display:flex; align-items:center; gap:14px;">
-        <div class="vet-avatar">${vet.iniciales}</div>
-        <div>
-          <h3>${vet.nombre}</h3>
-          <span class="vet-specialty">${vet.especialidad}</span>
+  const checkboxesTurno = document.querySelectorAll('input[name="turno-filtro"]');
+
+  function renderTarjetasVeterinarios() {
+    const turnosSeleccionados = Array.from(checkboxesTurno)
+      .filter((cb) => cb.checked)
+      .map((cb) => cb.value);
+
+    const listaFiltrada =
+      turnosSeleccionados.length === 0
+        ? LISTA_VETERINARIOS
+        : LISTA_VETERINARIOS.filter((vet) =>
+            vet.turnosFiltro && vet.turnosFiltro.some((t) => turnosSeleccionados.includes(t))
+          );
+
+    contenedorVets.innerHTML = listaFiltrada
+      .map(
+        (vet) => `
+      <article class="vet-card vet-cyan-card">
+        <div class="vet-card-top">
+          <div class="vet-photo-wrap">
+            ${
+              vet.imagen
+                ? `<img src="${resolverRuta(vet.imagen)}" alt="${vet.nombre}" class="vet-photo" />`
+                : `<div class="vet-avatar">${vet.iniciales}</div>`
+            }
+          </div>
+          <div class="vet-card-info">
+            <h3 class="vet-name">${vet.nombre}-</h3>
+            <p class="vet-role">${vet.rolMockup || vet.especialidad}</p>
+            <span class="vet-specialty">${vet.especialidad}</span>
+            <div class="vet-rating">
+              <span class="vet-star" aria-hidden="true">★</span>
+              <span>${vet.rating || '4.8'}</span>
+            </div>
+          </div>
         </div>
-      </div>
-      <p style="font-size:0.9rem; color:var(--color-text-muted);">${vet.experiencia}</p>
-      <p style="font-size:0.86rem; font-weight:600;">🕒 ${vet.horario}</p>
-      <button type="button" class="btn-pill-mint" data-select-vet="${vet.nombre}" style="width:fit-content; margin-top:6px;">
-        Elegir profesional
-      </button>
-    </article>
-  `
-  ).join('');
+
+        <div class="vet-card-details">
+          <p class="vet-shift">Turno : ${vet.turno || vet.horario}</p>
+          <p class="vet-extra-meta">${vet.experiencia} • 🕒 ${vet.horario}</p>
+        </div>
+
+        <button type="button" class="btn-vet-peach vet-book-btn" data-select-vet="${vet.nombre}">
+          Reservar cita
+        </button>
+      </article>
+    `
+      )
+      .join('');
+  }
+
+  renderTarjetasVeterinarios();
+
+  checkboxesTurno.forEach((cb) => {
+    cb.addEventListener('change', renderTarjetasVeterinarios);
+  });
 
   // Llenar opciones del select
   selectVet.innerHTML = LISTA_VETERINARIOS.map(

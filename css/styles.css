@@ -853,30 +853,271 @@ button, input, select, textarea {
   max-width: 340px;
 }
 
+/* ==========================================================================
+   DISEÑO ESPECIAL PÁGINA VETERINARIOS Y RESERVAS (pages/veterinarios.html)
+   ========================================================================== */
+.vet-page-section {
+  position: relative;
+  overflow: hidden;
+  padding-bottom: 40px;
+}
+
+.vet-hero-banner {
+  background: transparent;
+  border-bottom: none;
+  text-align: center;
+  padding: 28px 0 18px;
+  margin-bottom: 12px;
+}
+
+.vet-hero-banner h1 {
+  color: #1c2426;
+  font-size: clamp(1.8rem, 2.8vw, 2.3rem);
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  margin-bottom: 8px;
+}
+
+.vet-hero-banner p {
+  color: var(--color-text-muted);
+  font-size: 0.96rem;
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.vet-showcase-wrap {
+  position: relative;
+  z-index: 1;
+}
+
+/* Círculos decorativos color durazno pastel del fondo */
+.vet-blob {
+  position: absolute;
+  background-color: #fff0e5;
+  border-radius: 50%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.vet-blob-top-right {
+  width: 240px;
+  height: 240px;
+  top: -55px;
+  right: -65px;
+}
+
+.vet-blob-bottom-left {
+  width: 245px;
+  height: 245px;
+  bottom: 15px;
+  left: 110px;
+}
+
 /* Veterinarios Layout */
 .vet-layout {
+  position: relative;
+  z-index: 2;
   display: grid;
-  grid-template-columns: 0.85fr 1.35fr;
+  grid-template-columns: 0.78fr 1.42fr;
   gap: 28px;
   margin-bottom: 48px;
   align-items: start;
 }
 
+.vet-left-column {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.vet-right-column .section-heading {
+  color: #1c2426;
+  margin-bottom: 16px;
+}
+
+/* Tarjetas color celeste pastel (#cef9ff) del diseño */
+.vet-cyan-box,
+.vet-cyan-card {
+  background-color: #cef9ff;
+  border: none;
+  border-radius: 26px;
+  box-shadow: 0 10px 26px rgba(0, 125, 138, 0.08);
+}
+
+/* Cuadro de Disponibilidad */
+.availability-card {
+  padding: 24px 26px 28px;
+}
+
+.availability-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #1c2426;
+  margin-bottom: 18px;
+}
+
+.availability-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 170px;
+}
+
+.availability-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 1.02rem;
+  font-weight: 600;
+  color: #1c2426;
+  cursor: pointer;
+  user-select: none;
+}
+
+.availability-checkbox {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 19px;
+  height: 19px;
+  border: 2px solid #263238;
+  border-radius: 4px;
+  background-color: transparent;
+  cursor: pointer;
+  display: inline-grid;
+  place-content: center;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.availability-checkbox::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  transform: scale(0);
+  transition: transform 0.12s ease-in-out;
+  background-color: #1c2426;
+  border-radius: 2px;
+}
+
+.availability-checkbox:checked {
+  background-color: var(--color-auth-peach);
+  border-color: #1c2426;
+}
+
+.availability-checkbox:checked::before {
+  transform: scale(1);
+}
+
+/* Tarjeta de Agendar Cita Veterinaria en color celeste */
+.booking-card {
+  background-color: #cef9ff;
+  border: none;
+  border-radius: 26px;
+  padding: 26px;
+  box-shadow: 0 10px 26px rgba(0, 125, 138, 0.08);
+}
+
+.booking-card-title {
+  color: #1c2426;
+  font-size: 1.28rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.booking-card-subtitle {
+  font-size: 0.88rem;
+  color: #2c3e42;
+  margin-bottom: 18px;
+}
+
+.vet-pill-input {
+  background: #ffffff;
+  border: 1.5px solid transparent;
+  border-radius: 999px;
+  padding: 10px 16px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+}
+
+.vet-pill-textarea {
+  background: #ffffff;
+  border: 1.5px solid transparent;
+  border-radius: 18px;
+  padding: 10px 16px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+}
+
+.vet-pill-input:focus,
+.vet-pill-textarea:focus {
+  outline: none;
+  border-color: var(--color-auth-peach);
+  box-shadow: 0 0 0 3px rgba(245, 173, 126, 0.25);
+}
+
+/* Grid 2x2 de Tarjetas de Veterinarios */
 .vets-list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
 }
 
 .vet-card {
-  background: #ffffff;
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  padding: 20px;
-  box-shadow: var(--shadow-soft);
+  background-color: #cef9ff;
+  border: none;
+  border-radius: 26px;
+  padding: 20px 22px 22px;
+  box-shadow: 0 10px 26px rgba(0, 125, 138, 0.08);
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  justify-content: space-between;
+  gap: 14px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.vet-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 30px rgba(0, 125, 138, 0.14);
+}
+
+.vet-card-top {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.vet-photo-wrap {
+  width: 118px;
+  height: 132px;
+  border-radius: 24px;
+  overflow: hidden;
+  flex-shrink: 0;
+  background: #e3f4f6;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.vet-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.vet-card-info {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding-top: 4px;
+}
+
+.vet-name {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #1c2426;
+  line-height: 1.25;
+}
+
+.vet-role {
+  font-size: 0.94rem;
+  font-weight: 600;
+  color: #1c2426;
+  line-height: 1.28;
 }
 
 .vet-avatar {
@@ -894,23 +1135,74 @@ button, input, select, textarea {
 
 .vet-specialty {
   display: inline-block;
-  background: var(--color-prod-card);
+  background: rgba(255, 255, 255, 0.75);
   color: var(--color-nav-teal);
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   font-weight: 700;
-  padding: 4px 12px;
+  padding: 3px 10px;
   border-radius: var(--radius-pill);
   width: fit-content;
+  margin-top: 3px;
 }
 
-.booking-card {
-  background: #ffffff;
-  border: 1.5px solid var(--color-border);
-  border-radius: var(--radius-lg);
-  padding: 26px;
-  box-shadow: var(--shadow-soft);
-  position: sticky;
-  top: 90px;
+.vet-rating {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #1c2426;
+  margin-top: 6px;
+}
+
+.vet-star {
+  color: #ffcf00;
+  font-size: 1.2rem;
+  line-height: 1;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+}
+
+.vet-card-details {
+  padding-left: 8px;
+}
+
+.vet-shift {
+  font-size: 0.98rem;
+  font-weight: 600;
+  color: #1c2426;
+  margin-bottom: 4px;
+}
+
+.vet-extra-meta {
+  font-size: 0.8rem;
+  color: #374b4f;
+  font-weight: 500;
+}
+
+/* Botón durazno pastel "Reservar cita" / "Confirmar Reserva" del diseño */
+.btn-vet-peach {
+  background-color: var(--color-auth-peach);
+  color: #1b2224;
+  font-weight: 600;
+  font-size: 0.96rem;
+  padding: 10px 26px;
+  border-radius: var(--radius-pill);
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease, transform 0.15s ease;
+}
+
+.btn-vet-peach:hover {
+  background-color: var(--color-auth-peach-hover);
+  transform: translateY(-1px);
+}
+
+.vet-book-btn {
+  width: 84%;
+  margin: 2px auto 0;
 }
 
 /* Tablas y tarjetas de Reservas / Compras */
@@ -1311,7 +1603,8 @@ button, input, select, textarea {
     align-items: center;
   }
 
-  .products-grid {
+  .products-grid,
+  .vets-list {
     grid-template-columns: 1fr;
   }
 }
