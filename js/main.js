@@ -294,22 +294,28 @@ function renderizarHeader() {
     `
     : '';
 
-  // Cuando hay sesión activa se muestra Carrito, saludo y botón Cerrar Sesión;
-  // cuando NO hay sesión aparecen INICIAR SESION y REGISTRO (ocultando el botón de la página actual).
+  // En Veterinarios y Reservas se muestra CERRAR SESION tal como en el mockup oficial (sin botón Iniciar Sesión)
   const enPaginaLogin = pathActual.endsWith('login.html');
   const enPaginaRegistro = pathActual.endsWith('registro.html');
-  const botonesSesionHTML = sesion
-    ? `
+  const enPaginaVeterinarios = pathActual.includes('veterinarios.html');
+
+  let botonesSesionHTML = '';
+  if (enPaginaVeterinarios) {
+    botonesSesionHTML = `<button type="button" class="btn-auth" id="btn-logout">CERRAR SESION</button>`;
+  } else if (sesion) {
+    botonesSesionHTML = `
       <a href="${resolverRuta('pages/mis-compras.html')}" class="cart-badge-link" title="Ver carrito y compras">
         🛒 Carrito <span class="badge-count" id="nav-cart-count">${totalItems}</span>
       </a>
       <span class="user-chip" title="Usuario activo">🐾 Hola, ${sesion.nombre.split(' ')[0]}</span>
       <button type="button" class="btn-auth" id="btn-logout">CERRAR SESION</button>
-    `
-    : `
+    `;
+  } else {
+    botonesSesionHTML = `
       ${enPaginaLogin ? '' : `<a href="${resolverRuta('pages/login.html')}" class="btn-auth">INICIAR SESION</a>`}
       ${enPaginaRegistro ? '' : `<a href="${resolverRuta('pages/registro.html')}" class="btn-auth">REGISTRO</a>`}
     `;
+  }
 
   headerEl.innerHTML = `
     <div class="container navbar" id="main-navbar">
@@ -696,8 +702,8 @@ function iniciarPaginaVeterinarios() {
       turnosSeleccionados.length === 0
         ? LISTA_VETERINARIOS
         : LISTA_VETERINARIOS.filter((vet) =>
-            vet.turnosFiltro && vet.turnosFiltro.some((t) => turnosSeleccionados.includes(t))
-          );
+          vet.turnosFiltro && vet.turnosFiltro.some((t) => turnosSeleccionados.includes(t))
+        );
 
     contenedorVets.innerHTML = listaFiltrada
       .map(
@@ -705,11 +711,10 @@ function iniciarPaginaVeterinarios() {
       <article class="vet-card vet-cyan-card">
         <div class="vet-card-top">
           <div class="vet-photo-wrap">
-            ${
-              vet.imagen
-                ? `<img src="${resolverRuta(vet.imagen)}" alt="${vet.nombre}" class="vet-photo" />`
-                : `<div class="vet-avatar">${vet.iniciales}</div>`
-            }
+            ${vet.imagen
+            ? `<img src="${resolverRuta(vet.imagen)}" alt="${vet.nombre}" class="vet-photo" />`
+            : `<div class="vet-avatar">${vet.iniciales}</div>`
+          }
           </div>
           <div class="vet-card-info">
             <h3 class="vet-name">${vet.nombre}-</h3>
@@ -837,8 +842,8 @@ function iniciarPaginaReservas() {
           </thead>
           <tbody>
             ${reservas
-              .map(
-                (r) => `
+        .map(
+          (r) => `
               <tr>
                 <td><strong>${r.id}</strong></td>
                 <td>${r.mascota} <small>(${r.especie})</small></td>
@@ -854,16 +859,15 @@ function iniciarPaginaReservas() {
                   </span>
                 </td>
                 <td>
-                  ${
-                    r.estado === 'Confirmada'
-                      ? `<button type="button" class="btn-danger" data-cancel-res="${r.id}">Cancelar</button>`
-                      : `<button type="button" class="btn-outline" data-delete-res="${r.id}" style="padding:4px 12px; font-size:0.8rem;">Eliminar</button>`
-                  }
+                  ${r.estado === 'Confirmada'
+              ? `<button type="button" class="btn-danger" data-cancel-res="${r.id}">Cancelar</button>`
+              : `<button type="button" class="btn-outline" data-delete-res="${r.id}" style="padding:4px 12px; font-size:0.8rem;">Eliminar</button>`
+            }
                 </td>
               </tr>
             `
-              )
-              .join('')}
+        )
+        .join('')}
           </tbody>
         </table>
       </div>
@@ -934,8 +938,8 @@ function iniciarPaginaMisCompras() {
           </thead>
           <tbody>
             ${carrito
-              .map(
-                (item) => `
+        .map(
+          (item) => `
               <tr>
                 <td><strong>${item.nombre}</strong></td>
                 <td>$${formatearCOP(item.precio)}</td>
@@ -952,8 +956,8 @@ function iniciarPaginaMisCompras() {
                 </td>
               </tr>
             `
-              )
-              .join('')}
+        )
+        .join('')}
           </tbody>
         </table>
       </div>
@@ -996,8 +1000,8 @@ function iniciarPaginaMisCompras() {
           </thead>
           <tbody>
             ${pedidos
-              .map(
-                (ped) => `
+        .map(
+          (ped) => `
               <tr>
                 <td><strong>${ped.id}</strong></td>
                 <td>${ped.fecha}</td>
@@ -1007,8 +1011,8 @@ function iniciarPaginaMisCompras() {
                 <td><span class="status-badge status-confirmada">Completado</span></td>
               </tr>
             `
-              )
-              .join('')}
+        )
+        .join('')}
           </tbody>
         </table>
       </div>
