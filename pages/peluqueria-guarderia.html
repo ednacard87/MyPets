@@ -1,31 +1,151 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Peluquería y Guardería | MY PETS</title>
-  <link rel="stylesheet" href="../css/styles.css" />
+  <link rel="stylesheet" href="../css/styles.css?v=6" />
 </head>
 <body>
+ <header class="site-header" id="site-header"></header>
+  
+<main class="vet-page-section">
+    <section class="page-banner vet-hero-banner">
+      <div class="container">
+        <h1>Peluquería y Guardería</h1>
+        <p>Descubre nuestros servicios de peluquería y guardería para tu mascota. </p>
+      </div>
+    </section>
+    <div class="container vet-showcase-wrap">
+      <!-- Círculos decorativos color durazno pastel del fondo (como en el diseño) -->
+      <div class="vet-blob vet-blob-top-right" aria-hidden="true"></div>
+      <div class="vet-blob vet-blob-bottom-left" aria-hidden="true"></div>
 
-  <!-- Barra de navegación consistente con todas las páginas -->
-  <header class="site-header" id="site-header"></header>
+    
+<section class="vet-layout">
 
-  <!--
-    ==========================================================================
-    VISTA: PELUQUERÍA Y GUARDERÍA (pages/peluqueria-guarderia.html)
-    Esta sección se deja vacía intencionalmente según los requisitos del
-    proyecto para que el equipo agregue el contenido más adelante.
-    ==========================================================================
-  -->
-  <main class="container" id="peluqueria-guarderia-main" style="padding: 48px 0;">
-    <!-- Espacio reservado para el módulo de Peluquería y Guardería -->
-  </main>
+  <!-- IZQUIERDA: FILTROS -->
+  <aside class="vet-left-column">
+    <div class="vet-cyan-box availability-card">
 
-  <!-- Pie de página consistente con todas las páginas -->
-  <footer class="site-footer" id="site-footer"></footer>
+      <h3 class="availability-title">SERVICIO</h3>
+      <div class="availability-list">
+        <label class="availability-item">
+          <span>Peluquería</span>
+          <input type="checkbox" name="turno-filtro" value="Peluquería" class="availability-checkbox" />
+        </label>
+        <label class="availability-item">
+          <span>Guardería</span>
+          <input type="checkbox" name="turno-filtro" value="Guardería" class="availability-checkbox" />
+        </label>
+      </div>
 
-  <script src="../js/main.js"></script>
+      <hr>
+
+      <h3 class="availability-title">MASCOTA</h3>
+      <div class="availability-list">
+        <label class="availability-item">
+          <span>Perro</span>
+          <input type="checkbox" name="mascota-filtro" value="Perro" class="availability-checkbox" />
+        </label>
+        <label class="availability-item">
+          <span>Gato</span>
+          <input type="checkbox" name="mascota-filtro" value="Gato" class="availability-checkbox" />
+        </label>
+      </div>
+
+      <hr>
+
+      <h3 class="availability-title">DISPONIBILIDAD</h3>
+      <div class="availability-list">
+        <label class="availability-item">
+          <span>Mañana</span>
+          <input type="checkbox" name="disponibilidad-filtro" value="Mañana" class="availability-checkbox" />
+        </label>
+        <label class="availability-item">
+          <span>Tarde</span>
+          <input type="checkbox" name="disponibilidad-filtro" value="Tarde" class="availability-checkbox" />
+        </label>
+        <label class="availability-item">
+          <span>Todo el día</span>
+          <input type="checkbox" name="disponibilidad-filtro" value="Todo el día" class="availability-checkbox" />
+        </label>
+        <label class="availability-item">
+          <span>Fin de semana</span>
+          <input type="checkbox" name="disponibilidad-filtro" value="Fin de semana" class="availability-checkbox" />
+        </label>
+      </div>
+
+    </div>
+  </aside>
+
+  <!-- DERECHA: ESPECIALISTAS -->
+  <div class="vet-right-column">
+
+    <h2 class="section-heading">Nuestros Especialistas</h2>
+<div class="vets-list" id="vets-list-container">
+            <!-- Tarjetas de veterinarios generadas por js/main.js -->
+          </div>
+    <div class="vets-list">
+
+      <article class="vet-card">
+        <img class="vet-photo" src="../img/maria-garcia.png" alt="María García">
+        <div class="vet-card-info">
+          <h3 class="vet-name">María García</h3>
+          <p class="vet-role">Especialista Canina</p>
+          <p class="vet-extra-meta">Cortes de Raza</p>
+        </div>
+         <a href="./reservas.html" class="btn-vet-peach">
+        Reservar Turno
+        </a>
+      </article>
+
+      <article class="vet-card">
+        <img class="vet-photo" src="../img/fredy-rojas.png" alt="Fredy Rojas">
+        <div class="vet-card-info">
+          <h3 class="vet-name">Fredy Rojas</h3>
+          <p class="vet-role">Cuidador de Perros</p>
+          <p class="vet-extra-meta">Comportamiento y Socialización</p>
+        </div>
+         <a href="./reservas.html" class="btn-vet-peach">
+        Reservar Turno
+        </a>
+      </article>
+
+      <article class="vet-card">
+        <img class="vet-photo" src="../img/jon-correa.png" alt="Jon Correa">
+        <div class="vet-card-info">
+          <h3 class="vet-name">Jon Correa</h3>
+          <p class="vet-role">Cuidador de Gatos</p>
+          <p class="vet-extra-meta">Comportamiento y Socialización</p>
+        </div>
+         <a href="./reservas.html" class="btn-vet-peach">
+        Reservar Turno
+        </a>
+      </article>
+
+      <article class="vet-card">
+        <img class="vet-photo" src="../img/lina-lopez.png" alt="Lina López">
+        <div class="vet-card-info">
+          <h3 class="vet-name">Lina López</h3>
+          <p class="vet-role">Cuidadora de Perros y Gatos</p>
+          <p class="vet-extra-meta">Comportamiento y Socialización</p>
+        </div>
+        <a href="./reservas.html" class="btn-vet-peach">
+        Reservar Turno
+        </a>
+      </article>
+
+      
+
+    </div>
+  </div>
+
+</section>
+<main>
+           
+
+   <footer class="site-footer" id="site-footer"></footer>
+  <script src="../js/main.js?v=6"></script>
 </body>
 </html>
-
