@@ -1609,3 +1609,41 @@ button, input, select, textarea {
   }
 }
 
+.vet-blob-bottom-left {
+    display: none !important;
+}
+
+
+/* FOTOGRAFÍAS PROFESIONALES DE ESPECIALISTAS */
+
+.vets-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 28px;
+}
+
+.vet-card {
+    overflow: hidden;
+    border-radius: 20px;
+    background: #ffffff;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.09);
+}
+
+.vet-card .vet-photo {
+    display: block;
+    width: 100%;
+    height: 125px;
+    object-fit: cover;
+    object-position: center 25%;
+    border-radius: 0;
+}
+
+.vet-card-info {
+    padding: 16px 18px;
+}
+
+@media (max-width: 700px) {
+    .vet-card .vet-photo {
+        height: 250px;
+    }
+}
+
